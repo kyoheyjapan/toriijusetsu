@@ -14,7 +14,8 @@
     "format:astro": "prettier --write '**/*.astro'",
     "dev:format": "prettier --write . && npm run dev",
     "save": "prettier --write . && echo 'All files formatted!'",
-    "watch": "prettier --write . && astro dev --watch"
+    "watch": "prettier --write . && astro dev --watch",
+    "deploy": "npm run build && npx wrangler deploy"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.4",
