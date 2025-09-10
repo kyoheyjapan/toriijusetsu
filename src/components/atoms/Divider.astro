@@ -1,0 +1,29 @@
+---
+import Spacer from './Spacer';
+
+interface Props {
+  text?: string;
+}
+
+const { text = 'Continue' } = Astro.props;
+---
+
+<div
+  class={`
+  py-2
+  sm:py-4
+`}
+>
+  <div class="relative">
+    <div aria-hidden="true" class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-gray-100"></div>
+    </div>
+    {
+      text && (
+        <div class="relative flex justify-center">
+          <span class="px-2 text-sm text-gray-600">{text}</span>
+        </div>
+      )
+    }
+  </div>
+</div>

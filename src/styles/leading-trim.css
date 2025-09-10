@@ -1,0 +1,33 @@
+
+/*
+@utility leading-trim
+--leading-trim: calc((1em - 1lh) / 2);
+このクラスは、行間の上下トリム用のカスタムプロパティを定義します。
+1em（フォントサイズ）と1lh（line-heightの実際の高さ）の差を2で割り、
+上下の余白を均等に調整するために利用します。
+実際のトリミングには、paddingやmarginでこの変数を参照してください。
+*/
+.leading-trim {
+--leading-trim-base: calc((1em - 1lh) / 2);
+}
+.leading-trim-xs {
+--spacing-xs-trim: calc(var(--spacing-xs) + var(--leading-trim));
+}
+.leading-trim-sm {
+--spacing-sm-trim: calc(var(--spacing-sm) + var(--leading-trim));
+}
+.leading-trim-md {
+--spacing-md-trim: calc(var(--spacing-md) + var(--leading-trim));
+}
+.leading-trim-lg {
+--spacing-lg-trim: calc(var(--spacing-lg) + var(--leading-trim));
+}
+.leading-trim-xl {
+--spacing-xl-trim: calc(var(--spacing-xl) + var(--leading-trim));
+}
+.leading-trim-2xl {
+--spacing-2xl-trim: calc(var(--spacing-2xl) + var(--leading-trim));
+}
+.leading-trim-3xl {
+--spacing-3xl-trim: calc(var(--spacing-3xl) + var(--leading-trim));
+}

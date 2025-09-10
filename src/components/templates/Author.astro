@@ -1,0 +1,94 @@
+---
+import Br from '../atoms/Br';
+import Button from '../atoms/Button';
+import Divider from '../atoms/Divider.astro';
+import Spacer from '../atoms/Spacer';
+import Heading from '../molecules/Heading';
+---
+
+<div
+  class={`
+    box-border flex flex-col items-center justify-between
+    md:flex-col md:items-center
+  `}
+>
+  <Heading color="gray" align="center" />
+  <Spacer size="xs" />
+  <div
+    class={`
+      flex flex-col items-center justify-between gap-4
+      md:flex-row md:items-center md:gap-16
+    `}
+  >
+    <div class="flex flex-col gap-2">
+      <img
+        src="/cms/img/usr/aisakatouma/author.jpg"
+        alt="逢坂冬馬（あいさか・とうま）"
+        class="max-h-[300px] max-w-[300px] rounded-full"
+      />
+      <h6 class="typo-xs">写真：古谷勝</h6>
+    </div>
+    <div class="flex-auto space-y-0">
+      <h4
+        class={`
+          typo-2xl flex items-center justify-start gap-2 font-serif font-bold
+        `}
+      >
+        逢坂冬馬
+        <span class="typo-sm">（あいさか・とうま）</span>
+      </h4>
+      <Spacer size="4xs" />
+      <div
+        class={`
+          typo-md leading-normal
+          md:leading-loose
+        `}
+      >
+        1985年、埼玉県生まれ。明治学院大学国際学部国際学科卒。2021年、『同志少女よ、敵を撃て』で<Br
+          pc
+        />第11回アガサ・クリスティー賞を受賞してデビュー。同書は2022年本屋大賞、第9回高校生直木賞を受賞、第166回直木賞候補となった。2023年には第2長篇『歌われなかった海賊へ』を刊行、第15回山田風太郎賞の候補となった。2025年には第3長篇『ブレイクショットの軌跡』を刊行、第38回山本周五郎賞候補、第173回直木賞候補となった。
+      </div>
+      <Divider text="SNS" />
+      <div
+        class={`
+          grid grid-cols-1 gap-2
+          xs:grid-cols-2
+          md:grid-cols-3
+        `}
+      >
+        <div class="col-span-1">
+          <Button
+            href="https://x.com/AisakaTouma?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+            hierarchy="secondary"
+            className="rounded-md"
+            size="sm"
+            target="_blank"
+            rel="noreferrer"
+          >
+            X @AisakaTouma</Button
+          >
+        </div>
+        <div class="col-span-1">
+          <Button
+            href="https://bsky.app/profile/aisakatouma.bsky.social"
+            hierarchy="secondary"
+            className="rounded-md"
+            size="sm"
+            target="_blank"
+            rel="noreferrer">Bluesky Social @aisakatouma</Button
+          >
+        </div>
+        <div class="col-span-1">
+          <Button
+            href="https://www.instagram.com/aisaka_touma/"
+            hierarchy="secondary"
+            className="rounded-md"
+            size="sm"
+            target="_blank"
+            rel="noreferrer">Instagram @aisaka_touma</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

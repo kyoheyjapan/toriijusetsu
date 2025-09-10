@@ -1,0 +1,14 @@
+//.prettierignore
+*.md
+node_modules/
+.next/
+.nuxt/
+build/
+dist/
+out/
+public/
+package-lock.json
+yarn.lock
+.astro/
+pnpm-lock.yaml
+next.config.js

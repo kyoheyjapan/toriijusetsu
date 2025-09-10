@@ -1,0 +1,123 @@
+---
+// fonts
+import '@fontsource-variable/noto-sans-jp';
+import '@fontsource-variable/inter';
+// config
+import config from '../config';
+import '../styles/global.css';
+// favicon
+import siteConfig from '../site.config.json';
+import faviconSvg from '@images/favicon.svg';
+import faviconPng from '@images/favicon.png';
+import appleTouchIcon from '@images/favicon.png';
+// components
+import Loading from '../components/templates/Loading.tsx';
+import Header from '../components/templates/Header.tsx';
+import Footer from '../components/templates/Footer.astro';
+
+interface LayoutProps {
+  meta?: string;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+}
+const {
+  meta,
+  title: pageTitle,
+  description: pageDescription,
+  ogImage,
+  ogImageAlt,
+  ogImageWidth,
+  ogImageHeight,
+} = Astro.props as LayoutProps;
+
+const siteName = siteConfig.siteInfo.siteName;
+const defaultTitle = siteName;
+const defaultDescription =
+  siteConfig.siteInfo.ogp?.defaultImage?.alt || siteName;
+const defaultOgImage = siteConfig.siteInfo.ogp?.defaultImage?.url || '';
+const defaultOgImageAlt = siteConfig.siteInfo.ogp?.defaultImage?.alt || '';
+const defaultOgImageWidth =
+  siteConfig.siteInfo.ogp?.defaultImage?.width || 1200;
+const defaultOgImageHeight =
+  siteConfig.siteInfo.ogp?.defaultImage?.height || 630;
+
+function getMetaByPath(obj, path) {
+  if (!path) return undefined;
+  return path
+    .split('.')
+    .reduce((o, k) => (o && o[k] !== undefined ? o[k] : undefined), obj);
+}
+
+const metaData = meta ? getMetaByPath(siteConfig, meta) : undefined;
+
+// 日本語コンテンツを優先的に取得
+const metaTitle = metaData?.ja?.title || metaData?.title;
+const metaDescription = metaData?.ja?.description || metaData?.description;
+const metaOg = metaData?.ogp?.image || {};
+const metaOgImage = metaOg.url;
+const metaOgImageAlt = metaOg.alt;
+const metaOgImageWidth = metaOg.width;
+const metaOgImageHeight = metaOg.height;
+
+const title = pageTitle
+  ? `${pageTitle} | ${siteName}`
+  : metaTitle
+    ? `${metaTitle} | ${siteName}`
+    : defaultTitle;
+const description = pageDescription || metaDescription || defaultDescription;
+const ogImg = ogImage || metaOgImage || defaultOgImage;
+const ogAlt = ogImageAlt || metaOgImageAlt || defaultOgImageAlt;
+const ogWidth = ogImageWidth || metaOgImageWidth || defaultOgImageWidth;
+const ogHeight = ogImageHeight || metaOgImageHeight || defaultOgImageHeight;
+---
+
+<html
+  lang={config.lang}
+  class={`
+    bg-white text-gray-800
+    [scrollbar-gutter:stable]
+    [text-autospace:normal]
+    motion-safe:focus-within:scroll-smooth
+  `}
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImg} />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:image:width" content={ogWidth} />
+    <meta property="og:image:height" content={ogHeight} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImg} />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:url" content={Astro.url} />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg.src} />
+    <link rel="icon" type="image/png" href={faviconPng.src} />
+    <link rel="apple-touch-icon" href={appleTouchIcon.src} />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg.src} />
+    <link rel="icon" type="image/png" href={faviconPng.src} />
+    <link rel="apple-touch-icon" href={appleTouchIcon.src} />
+  </head>
+  <body id="top" class="loading flex min-h-svh flex-col bg-gray-25">
+    <Loading client:only="react" />
+    <div class="flex flex-grow flex-col">
+      <div class="flex-grow">
+        <slot />
+      </div>
+      <Footer />
+    </div>
+  </body>
+</html>

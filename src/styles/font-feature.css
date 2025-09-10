@@ -1,0 +1,19 @@
+/**
+ * フォント機能系ユーティリティ
+ *
+ * .fontPalt
+ * - 日本語のプロポーショナル幅（palt）を有効化
+ * - 例: <span class="fontPalt">テキスト</span>
+ *
+ * .fontProportional
+ * - 東アジア文字のプロポーショナル幅を有効化
+ * - 例: <span class="fontProportional">テキスト</span>
+ */
+
+.fontPalt {
+  font-feature-settings: "palt";
+}
+
+.fontProportional {
+  font-variant-east-asian: proportional-width;
+}

@@ -1,0 +1,20 @@
+---
+// Astroコンポーネントでは、Frontmatterセクション内にJSを配置します
+import SliderBookCoverReact from './SliderBookCoverReact';
+
+// プロパティの定義
+interface Props {
+  images: {
+    src: string;
+    alt?: string;
+    link?: string; // リンク先のURLを追加（オプショナル）
+  }[];
+  className?: string;
+}
+
+// プロパティを受け取る
+const { images, className = '' } = Astro.props;
+---
+
+<!-- クライアントサイドとしてReactコンポーネントをレンダリング -->
+<SliderBookCoverReact client:load images={images} className={className} />

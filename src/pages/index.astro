@@ -1,0 +1,60 @@
+---
+import Logo from '../components/vi/Logo';
+import Container from '../components/atoms/Container';
+import Layout from '../layouts/Layout.astro';
+import Spacer from '../components/atoms/Spacer';
+
+const companyInfoItems = [
+  { label: 'Business Name', value: '鳥井住設<br/>TORII Jusetsu' },
+  {
+    label: 'Address',
+    value:
+      '〒238-0315 神奈川県横須賀市林 2-1-2-38<br/>2-1-2-38 Hayashi, Yokosuka-shi, Kanagawa 238-0315, Japan',
+  },
+  {
+    label: 'Representative',
+    value: '鳥井邦幸<br/>TORII Kuniyuki',
+  },
+  { label: 'E-Mail', value: 'hello@toriijusetsu.com' },
+];
+---
+
+<Layout meta="siteInfo.home">
+  <main>
+    <Container size="sm" className="inner_lg">
+      <Logo className="mx-auto h-auto fluid-w-[120px,240px]" />
+      <Spacer size="lg" />
+      <div class="grid grid-cols-1">
+        <div
+          class={`
+            col-span-1 flex flex-col gap-2 border-y border-gray-200 py-4
+            [&>div]:last:border-b-0
+          `}
+        >
+          {
+            companyInfoItems.map((item) => (
+              <div
+                class={`
+                  grid w-full grid-cols-1 gap-2 border-b border-gray-200 py-2
+                  lg:grid-cols-1 lg:gap-3 lg:py-6
+                `}
+              >
+                <dt
+                  class={`
+                    type-md col-span-1 font-sans font-medium text-gray-500
+                  `}
+                >
+                  {item.label}
+                </dt>
+                <dd
+                  class="type-lg col-span-1 font-sans text-gray-700"
+                  set:html={item.value}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>

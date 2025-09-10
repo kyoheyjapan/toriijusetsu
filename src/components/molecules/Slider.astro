@@ -1,0 +1,19 @@
+---
+// Astroコンポーネントでは、Frontmatterセクション内にJSを配置します
+import SliderReact from './SliderReact';
+
+// プロパティの定義
+interface Props {
+  images: {
+    pc: string;
+    sp: string;
+    link?: string; // リンク先のURLを追加（オプショナル）
+  }[];
+}
+
+// プロパティを受け取る
+const { images } = Astro.props;
+---
+
+<!-- クライアントサイドとしてReactコンポーネントをレンダリング -->
+<SliderReact client:load images={images} />

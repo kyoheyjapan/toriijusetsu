@@ -1,0 +1,173 @@
+@layer reset, base, feature;
+
+@import 'https://cdn.jsdelivr.net/npm/kiso.css@latest/kiso.css' layer(reset);
+
+@layer feature {
+  @scope (.button.scope) to (.scope) {
+    :scope {
+      --_surface: var(--color-darkest);
+
+      --gradient-stop: if(style(--_is-hocus: true): 100%; else: 0%);
+      --gradient-angle: if(style(--_is-hocus: true): 90deg; else: -90deg);
+
+      display: block grid;
+      grid-template-columns: 1fr auto 1fr;
+      column-gap: 1ch;
+      align-items: center;
+      border: 2px solid var(--_surface);
+      background-image: linear-gradient(
+        var(--gradient-angle),
+        var(--_surface) var(--gradient-stop),
+        transparent 0
+      );
+      padding: 1.5em;
+      color: if(style(--_is-hocus: true): var(--color-lightest) ; else: var(--color-darkest));
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition-duration: 300ms;
+        transition-property: color, --gradient-stop;
+      }
+
+      &::before {
+        content: '';
+      }
+
+      &::after {
+        justify-self: end;
+        translate: if(style(--_is-hocus: true): 4px;);
+        rotate: 45deg;
+        transition-duration: inherit;
+        transition-property: translate;
+        border-inline-end: 1px solid;
+        border-block-start: 1px solid;
+        aspect-ratio: 1;
+        inline-size: 1ex;
+        content: '';
+      }
+
+      &:focus-visible {
+        --_is-hocus: true;
+      }
+
+      &:is(:any-link, :enabled):hover {
+        @media (any-hover: hover) {
+          --_is-hocus: true;
+        }
+      }
+    }
+  }
+}
+
+@property --gradient-stop {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@layer base {
+  :root {
+    --_background: #fcfcfc;
+    --_grid-color: #efefef;
+    --_font-size-min: 87.5%;
+    --_font-size-max: 100%;
+
+    background-image:
+      linear-gradient(var(--_grid-color) 2px, transparent 2px),
+      linear-gradient(90deg, var(--_grid-color) 2px, transparent 2px),
+      linear-gradient(var(--_grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--_grid-color) 1px, var(--_background) 1px);
+    background-position:
+      -2px -2px,
+      -2px -2px,
+      -1px -1px,
+      -1px -1px;
+    background-size:
+      50px 50px,
+      50px 50px,
+      10px 10px,
+      10px 10px;
+    color: var(--color-darkest);
+    font-size: clamp(
+      var(--_font-size-min),
+      calc(
+        var(--_font-size-min) + progress(100svi, 375px, 1280px) *
+          (var(--_font-size-max) - var(--_font-size-min))
+      ),
+      var(--_font-size-max)
+    );
+    line-height: 1.618;
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+    @supports not (top: calc(progress(1svi, 1px, 1px) * 1px)) {
+      font-size: var(--_font-size-min);
+
+      @media (width >= 640px) {
+        font-size: var(--_font-size-max);
+      }
+    }
+
+    &:lang(en) {
+      font-kerning: normal;
+      hyphens: auto;
+      text-wrap: pretty;
+    }
+  }
+
+  body {
+    display: block grid;
+    align-content: center;
+    justify-items: center;
+
+    & > * {
+      inline-size: min(20rem, 100%);
+    }
+  }
+
+  img,
+  svg {
+    display: block flow;
+  }
+}
+
+@property --color-darkest {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #444;
+}
+
+@property --color-darker {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #696969;
+}
+
+@property --color-dark {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #999;
+}
+
+@property --color-light {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ccc;
+}
+
+@property --color-lighter {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ececec;
+}
+
+@property --color-lightest {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(from #ececec calc(l + 0.05) c h);
+}

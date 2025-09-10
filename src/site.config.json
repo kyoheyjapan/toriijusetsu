@@ -1,0 +1,35 @@
+{
+  "siteInfo": {
+    "siteName": "鳥井住設｜ToriiJusetsu",
+    "domain": "https://www.toriijusetsu.com",
+    "company": {
+      "name": "鳥井住設",
+      "nameEng": "ToriiJusetsu",
+      "zip": "1500034",
+      "address": "東京都千代田区1-1-1",
+      "addressEng": "1-1-1, Chiyoda-ku, Tokyo, Japan",
+      "telephone": "03-1234-5678",
+      "mail": "info@dummy.co.jp",
+      "map": "https://maps.app.goo.gl/gzFPHaSZS1fjqsvW7"
+    },
+    "home": {
+      "url": "/",
+      "ja": {
+        "title": "鳥井住設 一般住宅設備販売・施工｜TORIIJUSETSU ELECTRICAL,PLUMBING &HARDWARE",
+        "description": "神奈川県横須賀市・三浦市を中心に住宅設備の販売・施工を行う鳥井住設のウェブサイト"
+      },
+      "en": {
+        "title": "Top Page",
+        "description": "Sanodyne Therapeutics, Inc. website. At Sanodyne Therapeutics, we are dedicated to bringing hope and relief to patients suffering from peripheral neuropathy and neuropathic pain. We are committed to developing innovative therapies that restore comfort and improve quality of life. By leveraging cutting-edge science and our deep experience in pain management."
+      }
+    },
+    "ogp": {
+      "defaultImage": {
+        "url": "/assets/images/ogp.png",
+        "alt": "鳥井住設 - 一般住宅設備販売・施工",
+        "width": 1200,
+        "height": 630
+      }
+    }
+  }
+}

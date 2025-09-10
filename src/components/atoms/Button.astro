@@ -1,0 +1,204 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+import clsx from 'clsx';
+
+export interface Props {
+  type?: 'rectangle' | 'square';
+  hierarchy?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'transparent'
+    | 'girls'
+    | 'pirates'
+    | 'breakshot';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  href?: string;
+  className?: string;
+  icon?: string;
+  as?: 'anchor' | 'button' | 'buttonSubmit';
+  disabled?: boolean;
+  loading?: boolean;
+  'aria-label'?: string;
+  target?: string;
+  rel?: string;
+  [key: string]: any;
+}
+
+const {
+  type = 'rectangle',
+  hierarchy = 'primary',
+  size = 'xs',
+  href = '/',
+  className,
+  icon,
+  as = 'anchor',
+  disabled = false,
+  loading = false,
+  'aria-label': ariaLabel,
+  target,
+  rel,
+  ...props
+} = Astro.props;
+
+// 共通化・簡素化したスタイル定義
+const typeBase =
+  'group border box-border flex items-center justify-center font-bold align-middle transition focus:outline-none';
+const squareBase = 'aspect-square leading-none';
+
+const sizeStyles: Record<string, Record<string, string>> = {
+  rectangle: {
+    xs: 'h-8 px-4 text-xs',
+    sm: 'h-10 px-5 text-sm',
+    md: 'h-12 px-5 text-base',
+    lg: 'h-14 px-6 text-lg',
+    xl: 'h-16 px-8 text-xl',
+  },
+  square: {
+    xs: 'h-8 w-8 text-xs',
+    sm: 'h-10 w-10 text-sm',
+    md: 'h-12 w-12 text-base',
+    lg: 'h-14 w-14 text-lg',
+    xl: 'h-16 w-16 text-xl',
+  },
+};
+
+const hierarchyStyles = {
+  primary: 'bg-primary text-white border-black/20 hover:bg-hover active:bg-hover/70',
+  girls: 'bg-[#206f73] text-white border-black/20 hover:bg-hover active:bg-hover/70',
+  pirates: 'bg-[#776E5C] text-white border-black/20 hover:bg-hover active:bg-hover/70',
+  breakshot: 'bg-[#2d1b4e] text-white border-black/20 hover:bg-hover active:bg-hover/70',
+  secondary:
+    'bg-white text-primary border-primary hover:text-hover hover:bg-white active:opacity-60 hover:border-hover',
+  tertiary:
+    'bg-white text-txt border-border hover:text-hover hover:bg-white hover:border-hover active:opacity-60',
+  transparent: 'bg-white/0 text-txt border-none hover:text-hover',
+};
+
+const iconColor = {
+  primary: 'text-white',
+  girls: 'text-white',
+  pirates: 'text-white',
+  breakshot: 'text-white',
+  secondary: 'text-primary',
+  tertiary: 'text-icon',
+  transparent: 'text-icon',
+};
+
+const sizeClass = sizeStyles[type][size] ?? sizeStyles.rectangle.xs;
+const baseClass = clsx(
+  typeBase,
+  type === 'square' && squareBase,
+  sizeClass,
+  hierarchyStyles[hierarchy],
+  {
+    'cursor-not-allowed opacity-50': disabled,
+    relative: loading,
+  },
+  className,
+);
+
+const iconClass = clsx('mr-2', iconColor[hierarchy], {
+  'opacity-50': disabled,
+});
+---
+
+{
+  as === 'buttonSubmit' && (
+    <button
+      type="submit"
+      disabled={disabled}
+      class={baseClass}
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
+      aria-busy={loading}
+      {...props}
+    >
+      {loading && (
+        <span
+          class={`
+          absolute inset-0 flex items-center justify-center bg-white/50
+        `}
+        >
+          <span
+            class={`
+            size-4 animate-spin rounded-full border-2 border-primary
+            border-t-transparent
+          `}
+          />
+        </span>
+      )}
+      {icon && <AstroIcon name={icon} class={iconClass} aria-hidden="true" />}
+      <span class={clsx({ 'opacity-50': disabled })}>
+        <slot />
+      </span>
+    </button>
+  )
+}
+
+{
+  as === 'button' && (
+    <button
+      type="button"
+      disabled={disabled}
+      class={baseClass}
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
+      aria-busy={loading}
+      {...props}
+    >
+      {loading && (
+        <span
+          class={`
+          absolute inset-0 flex items-center justify-center bg-white/50
+        `}
+        >
+          <span
+            class={`
+            size-4 animate-spin rounded-full border-2 border-primary
+            border-t-transparent
+          `}
+          />
+        </span>
+      )}
+      {icon && <AstroIcon name={icon} class={iconClass} aria-hidden="true" />}
+      <span class={clsx({ 'opacity-50': disabled })}>
+        <slot />
+      </span>
+    </button>
+  )
+}
+
+{
+  as === 'anchor' && (
+    <a
+      href={disabled ? '#' : href}
+      class={baseClass}
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
+      aria-busy={loading}
+      target={target}
+      rel={rel}
+      {...props}
+    >
+      {loading && (
+        <span
+          class={`
+          absolute inset-0 flex items-center justify-center bg-white/50
+        `}
+        >
+          <span
+            class={`
+            size-4 animate-spin rounded-full border-2 border-primary
+            border-t-transparent
+          `}
+          />
+        </span>
+      )}
+      {icon && <AstroIcon name={icon} class={iconClass} aria-hidden="true" />}
+      <span class={clsx({ 'opacity-50': disabled })}>
+        <slot />
+      </span>
+    </a>
+  )
+}

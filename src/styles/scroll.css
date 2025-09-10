@@ -1,0 +1,8 @@
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.scroll-offset {
+  scroll-margin-top: 80px;
+  scroll-snap-align: start;
+}

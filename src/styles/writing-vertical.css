@@ -1,0 +1,13 @@
+/**
+ * .writing-vertical
+ * 縦書きレイアウトを適用するユーティリティクラス
+ * - writing-mode: vertical-rl で右から左への縦書き
+ * - text-orientation: mixed で日本語・英語混在時も自然な表示
+ *
+ * 使用例:
+ * <div class="writing-vertical">縦書きテキスト</div>
+ */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

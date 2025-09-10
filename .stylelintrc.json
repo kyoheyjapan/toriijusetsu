@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-recommended",
+    "stylelint-config-standard"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "at-rule-no-deprecated": null,
+    "color-function-notation": "legacy",
+    "length-zero-no-unit": true,
+    "order/properties-alphabetical-order": true,
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "ignore": ["after-comment", "first-nested"]
+      }
+    ],
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["apply", "layer", "responsive", "screen", "variants", "tailwind", "theme"]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["user-drag"]
+      }
+    ]
+  }
+}

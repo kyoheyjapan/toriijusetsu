@@ -1,0 +1,25 @@
+---
+interface Props {
+  text?: string;
+  class?: string;
+}
+
+const { text = 'Continue', class: className } = Astro.props;
+---
+
+<div class={`w-full py-2 sm:py-4 ${className || ''}`}>
+  <div class="relative">
+    <div aria-hidden="true" class="absolute inset-0 z-0 flex items-center">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    {
+      text && (
+        <div class="relative z-10 flex justify-center">
+          <span class="type-md bg-white px-2.5 py-1 font-sans tracking-widest text-sub-400">
+            {text}
+          </span>
+        </div>
+      )
+    }
+  </div>
+</div>

@@ -1,0 +1,33 @@
+/* Container utility */
+
+.inner_sm {
+  @apply py-9 md:py-8;
+}
+.inner {
+  @apply py-9 md:py-16;
+}
+
+.inner-t {
+  @apply pt-9 md:pt-16;
+}
+.inner-b {
+  @apply pb-9 md:pb-16;
+}
+.inner_md {
+  @apply py-14 xl:py-20;
+}
+.inner_md-t {
+  @apply pt-20 xl:pt-20;
+}
+.inner_md-b {
+  @apply pb-14 xl:pb-20;
+}
+.inner_lg {
+  @apply py-24 xl:py-30;
+}
+.inner_lg-t {
+  @apply pt-24 xl:pt-30;
+}
+.inner_lg-b {
+  @apply pb-24 xl:pb-30;
+}

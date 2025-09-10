@@ -1,0 +1,13 @@
+/**
+ * @utility .offset:target
+ * スクロール時にターゲット要素の上部に余白（オフセット）を設けるユーティリティクラスです。
+ * 主にアンカーリンクでのスクロール時、固定ヘッダー等で内容が隠れないように調整します。
+ *
+ * 使用例:
+ * <a href="#section1">Section 1へ</a>
+ * ...
+ * <div id="section1" class="offset">...</div>
+ */
+.offset:target {
+  scroll-margin-top: 64px;
+}

@@ -1,0 +1,62 @@
+---
+import Image from 'astro/components/Image.astro';
+import coverContact from '@images/cover-contact.webp';
+import { Icon } from 'astro-icon/components';
+import Spacer from '../atoms/Spacer';
+import Br from '../atoms/Br.astro';
+export interface Props {
+  id?: string;
+}
+const { id } = Astro.props;
+---
+
+<div class="md:px-6">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSd03xuVId0ANItZDCm7GsdgfMUyWmGFTB6z4MC3_EA6fJNEZw/viewform?usp=header"
+    id={id}
+    target="_blank"
+    rel="noreferrer noopener"
+    class=`group header-nega relative block rounded-md  overflow-hidden`
+  >
+    <div
+      class="cta-container mx-auto max-w-[var(--container-5xl)] rounded-2xl before:absolute before:top-0 before:right-0 before:z-10 before:h-full before:w-full before:translate-x-0 before:translate-y-0 before:rotate-0 before:rounded-md before:bg-white before:opacity-10 before:mix-blend-screen before:transition-transform before:duration-350 before:ease-in-out before:content-[''] hover:before:translate-x-0 hover:before:-translate-y-120"
+    >
+      <div
+        class="relative mx-auto flex min-h-[320px] max-w-[var(--container-5xl)] items-center justify-start overflow-hidden rounded-2xl bg-brand-800 md:min-h-[320px] lg:min-h-[400px] xl:min-h-[480px]"
+      >
+        <div class="relative z-10 px-10 font-sans text-white md:px-12 lg:px-20">
+          <div class="space-y-6 md:space-y-10">
+            <h2 class="text-md text-base font-semibold tracking-widest text-white">Get in Touch</h2>
+            <div class="flex flex-col gap-2">
+              <h3 class="kerning-all fluid-t-[28px,43px] font-semibold">
+                Let's Talk<Br sp /> Talent Development
+              </h3>
+              <Spacer size="4xs" />
+              <h3 class="type-sm kerning-all font-semibold">
+                グローバル人材育成の課題、まずはご相談ください
+              </h3>
+              <h4 class="type-sm kerning-all leading-relaxed font-normal">
+                海外拠点の人材育成から組織開発まで、<Br
+                />ASEAN地域での豊富な経験を活かしたソリューションをご提案します。
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute top-0 left-0 z-0 h-full w-full mix-blend-luminosity group-hover:opacity-90"
+        >
+          <Image
+            src={coverContact}
+            alt="Get in Touch - Let's Talk Talent Development "
+            class="h-full min-h-[320px] w-full object-fill opacity-100 md:min-h-[300px] xl:min-h-[500px]"
+          />
+        </div>
+        <div
+          class="absolute top-1/2 right-2 z-10 -translate-y-1/2 transition-all duration-300 group-hover:right-0 sm:right-4"
+        >
+          <Icon name="lucide:arrow-right" class="size-5 text-white sm:size-8" />
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

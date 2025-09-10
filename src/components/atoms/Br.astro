@@ -1,0 +1,42 @@
+---
+export interface Props {
+  sp?: boolean;
+  tb?: boolean;
+  pc?: boolean;
+  sptb?: boolean;
+  tbsp?: boolean;
+  tbpc?: boolean;
+  pctb?: boolean;
+  all?: boolean;
+  className?: string;
+  ariaHidden?: boolean;
+}
+const {
+  sp = false,
+  tb = false,
+  pc = false,
+  sptb = false,
+  tbsp = false,
+  tbpc = false,
+  pctb = false,
+  all = false,
+  className = '',
+  ariaHidden = true,
+} = Astro.props;
+
+function getBreakpointClasses() {
+  return [
+    sp && 'block md:hidden lg:hidden',
+    (sptb || tbsp) && 'block md:block lg:hidden',
+    tb && 'hidden md:block lg:hidden',
+    (tbpc || pctb) && 'hidden md:block lg:block',
+    pc && 'hidden md:hidden lg:block',
+    all && 'block',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+---
+
+<br class={getBreakpointClasses()} aria-hidden={ariaHidden} />

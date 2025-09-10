@@ -1,0 +1,66 @@
+# .gitignoreファイル
+# 参考: https://help.github.com/articles/ignoring-files/
+
+# 依存関係関連
+node_modules
+**/node_modules
+/node_modules
+/.pnp                   # Yarn Plug'n'Play
+.pnp.*                  # Yarn Plug'n'Play関連ファイル
+.pnp.js                 # Yarn Plug'n'Play JSファイル
+.yarn/*                 # Yarnディレクトリ全体
+!.yarn/patches          # Yarnパッチは除外しない
+!.yarn/plugins          # Yarnプラグインは除外しない
+!.yarn/releases         # Yarnリリースは除外しない
+!.yarn/versions         # Yarnバージョンは除外しない
+
+# Astro関連
+.astro
+**/.astro
+dist
+**/dist
+
+# Next.js関連
+/.next/                 # Next.jsのビルドディレクトリ
+/out/                   # Next.jsの静的出力
+
+# 本番ビルド
+/build                  # ビルド成果物
+
+# テスト関連
+/coverage               # カバレッジレポート
+
+# その他一時ファイル
+.DS_Store
+**/.DS_Store
+*.pem                   # 証明書ファイル
+*.gz                    # 圧縮ファイル
+/xt                     # 一時ディレクトリ
+
+# デバッグログ
+npm-debug.log*          # npmデバッグログ
+yarn-debug.log*         # yarnデバッグログ
+yarn-error.log*         # yarnエラーログ
+.pnpm-debug.log*        # pnpmデバッグログ
+
+# VSCode履歴プラグイン
+.history/
+*/.history/
+**/.history/
+
+# 環境変数ファイル
+.env*                   # .envファイル全般
+.env*.local             # .envのローカルバージョン
+
+# Vercel関連
+.vercel                 # Vercel設定
+
+# TypeScript関連
+*.tsbuildinfo           # TypeScriptビルド情報
+next-env.d.ts           # Next.jsの型定義
+
+# ログファイル
+npm-debug.log*          # npmデバッグログ（重複だが明示）
+yarn-debug.log*         # yarnデバッグログ（重複だが明示）
+yarn-error.log*         # yarnエラーログ（重複だが明示）
+pnpm-debug.log*         # pnpmデバッグログ（重複だが明示）

@@ -1,0 +1,82 @@
+
+/*
+@utility kerning-none
+font-kerning: none;
+font-feature-settings: normal;
+このクラスを適用すると、カーニングが完全に無効になります。文字間のスペースは、フォントの標準設定に従って調整されません。
+*/
+.kerning-none {
+font-feature-settings: normal;
+font-kerning: none;
+}
+
+/*
+@utility kerning-normal
+font-kerning: normal;
+font-feature-settings: normal;
+このクラスは、ブラウザやフォントのデフォルトのカーニング設定を適用します。
+多くの場合、これは欧文フォントのペアカーニングを有効にしますが、
+CJKフォントの全角文字には適用されないことがあります。
+*/
+.kerning-normal {
+font-feature-settings: normal;
+font-kerning: normal;
+}
+
+/*
+@utility kerning-all
+font-kerning: normal;
+font-feature-settings: 'palt';
+このクラスは、通常のカーニングに加えて、OpenTypeの機能タグである
+palt（Proportional Alternate Widths）を適用します。
+特にCJKフォントにおいて、より詳細なカーニングや文字詰めの調整を
+可能にすることを目的としています。GitHubのコメントで議論されているように、
+全角文字に対しても適切なカーニングを適用する際に役立ちます。
+*/
+.kerning-all {
+font-feature-settings: "palt";
+font-kerning: normal;
+}
+
+
+/*
+  @utility kerning（日本語向け調整）
+
+  日本語テキストの文節ごとのカーニングや、区切り記号（スラッシュ等）の表示制御を行うユーティリティです。
+  主に自動文節分割（auto-phrase）と組み合わせて、文節ごとにカーニングや折り返しを調整したい場合に利用します。
+
+  使い方例:
+    <span class="kerning">
+      <span class="phrase">これは</span>
+      <span class="phrase-delimiter">/</span>
+      <span class="phrase">サンプル</span>
+      <span class="phrase-delimiter">/</span>
+      <span class="phrase">です</span>
+    </span>
+
+    <span class="kerning auto-phrase">
+      <span class="phrase">自動</span>
+      <span class="phrase">文節</span>
+      <span class="phrase">分割</span>
+    </span>
+
+  説明:
+    - .kerning .phrase-delimiter:
+      区切り記号（スラッシュ等）を非表示にし、white-space: break-spaces; で空白の扱いを調整します。
+    - .kerning.auto-phrase .phrase:
+      文節ごとにインラインブロック化し、折り返しを防ぎます。
+
+  .kerning .phrase-delimiter {
+    display: none;
+    white-space: break-spaces;
+  }
+  .kerning.auto-phrase .phrase {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  @media (width <= 768px) {
+    .kerning.auto-phrase .phrase {
+      margin-right: 0.1em;
+    }
+  }
+*/

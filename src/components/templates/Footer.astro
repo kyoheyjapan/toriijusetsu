@@ -1,0 +1,33 @@
+---
+import Copyrights from '../atoms/Copyrights.astro';
+import Spacer from '../atoms/Spacer';
+import SymbolMin from '../vi/SymbolMin.tsx';
+import bigtype from '@images/bigtype.svg';
+import Image from 'astro/components/Image.astro';
+---
+
+<footer class="bg-gray-25">
+  <div
+    class={`
+      mx-auto max-w-(--container-5xl) px-6 py-8
+      lg:px-8 lg:py-10
+      4xl:px-0
+    `}
+  >
+    <SymbolMin className="mx-auto fluid-w-[64px,160px] text-gray-300" />
+    <Spacer size="md" />
+    <h2 class="w-full">
+      <Image
+        src={bigtype}
+        class="h-auto w-full"
+        loading="lazy"
+        aria-hidden="true"
+        alt="Healing Lives, Relieving Pain. - Sanodyne Therapeutics, Inc."
+      />
+    </h2>
+    <Spacer size="xl" />
+    <div class="flex items-center justify-center">
+      <Copyrights className="order-1" />
+    </div>
+  </div>
+</footer>

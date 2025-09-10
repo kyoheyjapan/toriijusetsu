@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="137" height="137"><svg width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_240)">
+<rect width="136.06" height="136.06" transform="translate(0 0.630005)" fill="white"></rect>
+<path d="M37.71 69.92C39.6651 69.92 41.25 68.3351 41.25 66.38C41.25 64.4249 39.6651 62.84 37.71 62.84C35.7549 62.84 34.17 64.4249 34.17 66.38C34.17 68.3351 35.7549 69.92 37.71 69.92Z" fill="#171D5D"></path>
+<path d="M68.02 102.82L68.03 102.81H45.19L58.04 109.84L19.84 136.69H68.03V102.81L68.02 102.82Z" fill="#004E97"></path>
+<path d="M116.22 0.630005V128.9L68.03 102.81V136.69H136.06V0.630005H116.22Z" fill="#007BBA"></path>
+<path d="M106.94 18.03L92.86 25.07H103.18L95.29 39.88L81.32 46.87H91.56L83.69 61.64L69.63 68.66H116.22V0.630005L106.94 18.03Z" fill="#171D5D"></path>
+<path d="M19.86 68.65L19.84 68.66H19.86V68.65Z" fill="#0A4482"></path>
+<path d="M40.04 75.61C34.14 74.36 25.98 77.11 24.67 83.13C23.88 83.77 21.62 80.78 21.24 80.1C20.22 78.27 19.81 76.42 19.86 74.63L19.84 136.69L51.73 83.99C48.05 79.01 43.87 76.42 40.04 75.61Z" fill="#171D5D"></path>
+<path d="M19.86 68.65L19.84 68.66L19.86 68.65Z" fill="#5DB5DF"></path>
+<path d="M68.03 34.65L62.49 31.64L19.84 8.43001V68.67H19.86V68.65V75.12C19.82 71.55 21.67 68.08 24.46 65.4L68.02 34.65H68.03Z" fill="#003984"></path>
+<path d="M0 0.630005V136.69H19.84V8.43001L62.49 31.63L68.03 34.65V0.630005H0Z" fill="#007BBA"></path>
+<path d="M116.22 0.630005H68.03V34.65H81.05L73.72 30.63L116.22 0.630005Z" fill="#004E97"></path>
+<path d="M102.88 78.11H80.04L92.89 85.14L85.58 90.37H62.74L75.59 97.4L68.03 102.81L116.22 128.9V68.66L102.88 78.11Z" fill="#003984"></path>
+</g>
+<defs>
+<clipPath id="SvgjsClipPath1001">
+<rect width="136.06" height="136.06" fill="white" transform="translate(0 0.630005)"></rect>
+</clipPath>
+</defs>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

@@ -1,0 +1,61 @@
+.article-content {
+  p {
+    @apply text-gray-700;
+  }
+  span {
+    @apply text-gray-700;
+  }
+  strong {
+    @apply text-gray-700;
+  }
+  em {
+    @apply text-gray-700;
+  }
+  b {
+    @apply text-gray-700;
+  }
+  i {
+    @apply text-gray-700;
+  }
+  u {
+    @apply text-gray-700;
+  }
+  s {
+    @apply text-gray-700;
+  }
+  small {
+    @apply text-gray-700;
+  }
+  sup {
+    @apply text-gray-700;
+  }
+  sub {
+    @apply text-gray-700;
+  }
+  blockquote {
+    @apply text-gray-700;
+  }
+  code {
+    @apply text-gray-700;
+  }
+  pre {
+    @apply text-gray-700;
+  }
+  ol {
+    @apply text-gray-700;
+  }
+  ul {
+    @apply text-gray-700;
+  }
+  li {
+    @apply text-gray-700;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-gray-700;
+  }
+}

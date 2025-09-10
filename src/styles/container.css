@@ -1,0 +1,21 @@
+
+  /*
+    =============================
+    レイアウト用ラッパーユーティリティ
+    =============================
+    .wrapper クラスは、ページやセクションの中央寄せ・最大幅制限・左右パディングを一括で適用します。
+    - box-sizing: content-box で余白計算を直感的に
+    - margin-inline: auto で中央寄せ
+    - padding-inline: max(5vw, var(--spacing-5)) でレスポンシブな左右余白
+    - max-width: 60rem で最大幅を制限
+
+    例: <div class="wrapper">...</div>
+
+    --spacing-5 は Tailwind の spacingスケール（例: 1.25rem=20px）に合わせて定義してください。
+  */
+  .container {
+    margin-inline: auto;
+    max-width: var(--container-5xl);
+    padding: clamp(1rem, 5vw, 2rem);
+    padding-inline: clamp(0px, calc(5vw - (100vw - var(--container-5xl)) / 2), 2rem);
+  }

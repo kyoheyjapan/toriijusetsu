@@ -1,0 +1,36 @@
+/**
+ * 文字折り返し・ワードブレーク系ユーティリティ
+ *
+ * 使用例:
+ * <span class="wbr">長い英単語やURLなど</span>
+ * <span class="autoPhrase">日本語の文節ごとに自動折り返し</span>
+ * <span class="wbKeepAll">単語内での折り返しを防ぐ</span>
+ */
+
+/*
+  .wbr
+  - 長い英単語やURLなどで自動的に折り返しを行う
+  - 日本語では単語内での折り返しを防ぐ
+*/
+.wbr {
+  overflow-wrap: break-word;
+  word-break: keep-all;
+}
+
+/*
+  .autoPhrase
+  - CSSのword-break: auto-phraseを強制適用
+  - 日本語の文節ごとに自動折り返し（対応ブラウザのみ）
+*/
+.autoPhrase {
+  word-break: auto-phrase !important;
+}
+
+/*
+  .wbKeepAll
+  - 単語内での折り返しを防ぐ
+  - 英語や日本語の混在テキストで有効
+*/
+.wbKeepAll {
+  word-break: keep-all !important;
+}

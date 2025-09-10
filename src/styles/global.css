@@ -1,0 +1,1016 @@
+/**
+ * TailwindCSSのレイヤーと@themeディレクティブの役割と使い分け
+ *
+ * ===== 使い分けのポイント =====
+ *
+ * @layer base:
+ * - プロジェクト全体に影響するグローバルな設定
+ * - リセットやデフォルトスタイル
+ * - CSS変数の定義
+ *
+ * @layer components:
+ * - 再利用可能なUIコンポーネント
+ * - 複数のスタイルを組み合わせた複合的な要素
+ * - デザインシステムのコンポーネント
+ *
+ * @theme:
+ * - TailwindCSS自体の設定を拡張
+ * - フォントやカラーなどのテーマ設定
+ * - tailwind.config.jsの代替
+ *
+ * @layer utilities:
+ * - HTMLで直接使用する小さなユーティリティクラス
+ * - 既存のTailwindユーティリティを拡張
+ * - 特定の目的を持つ再利用可能なクラス
+ *
+ * ===== 優先順位 =====
+ *
+ * 低 → 高
+ * base → components → utilities
+ *
+ * @themeはレイヤーではなく設定を定義するものなので、
+ * 優先順位の概念は適用されません。
+ */
+
+/* stylelint-disable-next-line import-notation */
+@import 'tailwindcss';
+@plugin '../components/scripts/fluid-sizing-plugin.js';
+
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; */
+
+/**
+ * ===== @theme =====
+ * 役割:
+ * - TailwindCSS v4で導入された新しいディレクティブ
+ * - テーマ変数を定義するための専用の場所
+ * - tailwind.config.jsで定義していたテーマ設定をCSS内で直接定義できる
+ *
+ * 使用例:
+ * - フォントファミリーの定義
+ * - カラーパレットの定義
+ * - ブレークポイントの定義
+ *
+ * 特徴:
+ * - CSS変数ではなく、TailwindCSS専用の変数定義
+ * - コンパイル時にTailwindの設定に統合される
+ * - tailwind.config.jsの代替または補完として機能する
+ */
+@layer base {
+  /* =============================
+   * 1. カスタムプロパティ（テーマ変数）
+   * ============================= */
+  @theme {
+    /*
+
+    基本カラー
+    Alpha Black
+
+    */
+    --color-al-black-100: oklch(from #000 l c h);
+    --color-al-black-90: oklch(from #000 l c h / 90%);
+    --color-al-black-80: oklch(from #000 l c h / 80%);
+    --color-al-black-70: oklch(from #000 l c h / 70%);
+    --color-al-black-60: oklch(from #000 l c h / 60%);
+    --color-al-black-50: oklch(from #000 l c h / 50%);
+    --color-al-black-40: oklch(from #000 l c h / 40%);
+    --color-al-black-30: oklch(from #000 l c h / 30%);
+    --color-al-black-20: oklch(from #000 l c h / 20%);
+    --color-al-black-10: oklch(from #000 l c h / 10%);
+
+    /*
+
+    Alpha White
+
+    */
+    --color-al-white-100: oklch(from #fff l c h);
+    --color-al-white-90: oklch(from #fff l c h / 90%);
+    --color-al-white-80: oklch(from #fff l c h / 80%);
+    --color-al-white-70: oklch(from #fff l c h / 70%);
+    --color-al-white-60: oklch(from #fff l c h / 60%);
+    --color-al-white-50: oklch(from #fff l c h / 50%);
+    --color-al-white-40: oklch(from #fff l c h / 40%);
+    --color-al-white-30: oklch(from #fff l c h / 30%);
+    --color-al-white-20: oklch(from #fff l c h / 20%);
+    --color-al-white-10: oklch(from #fff l c h / 10%);
+    /*
+
+    Gray Scale
+
+    */
+    --color-gray-25: oklch(from #f8f7f5 l c h);
+    --color-gray-50: oklch(from #f2f0ec l c h);
+    --color-gray-100: oklch(from #ebe8e3 l c h);
+    --color-gray-150: oklch(from #e5e1da l c h);
+    --color-gray-200: oklch(from #dfd9d1 l c h);
+    --color-gray-250: oklch(from #d8d2c7 l c h);
+    --color-gray-300: oklch(from #d2cabe l c h);
+    --color-gray-350: oklch(from #cbc3b5 l c h);
+    --color-gray-400: oklch(from #c5bbac l c h);
+    --color-gray: oklch(from #bfb4a3 l c h);
+    --color-gray-450: oklch(from #bfb4a3 l c h);
+    --color-gray-500: oklch(from #aba292 l c h);
+    --color-gray-550: oklch(from #989082 l c h);
+    --color-gray-600: oklch(from #857d72 l c h);
+    --color-gray-650: oklch(from #726c61 l c h);
+    --color-gray-700: oklch(from #5f5a51 l c h);
+    --color-gray-750: oklch(from #4c4841 l c h);
+    --color-gray-800: oklch(from #393630 l c h);
+    --color-gray-850: oklch(from #262420 l c h);
+    --color-gray-900: oklch(from #131210 l c h);
+    /*
+
+    Brand Colors
+
+    */
+    --color-brand-25: oklch(from #e6f4ef l c h);
+    --color-brand-50: oklch(from #ceeae0 l c h);
+    --color-brand-100: oklch(from #b6e0d1 l c h);
+    --color-brand-150: oklch(from #9ed6c1 l c h);
+    --color-brand-200: oklch(from #86ccb2 l c h);
+    --color-brand-250: oklch(from #6dc2a3 l c h);
+    --color-brand-300: oklch(from #55b893 l c h);
+    --color-brand-350: oklch(from #3dae84 l c h);
+    --color-brand-400: oklch(from #25a475 l c h);
+    --color-brand-450: oklch(from #0d9a66 l c h);
+    --color-brand-500: oklch(from #0b8a5b l c h);
+    --color-brand-550: oklch(from #0a7b51 l c h);
+    --color-brand-600: oklch(from #096b47 l c h);
+    --color-brand-650: oklch(from #075c3d l c h);
+    --color-brand-700: oklch(from #064d33 l c h);
+    --color-brand-750: oklch(from #053d28 l c h);
+    --color-brand-800: oklch(from #032e1e l c h);
+    --color-brand-850: oklch(from #021e14 l c h);
+    --color-brand-900: oklch(from #010f0a l c h);
+    /*
+
+    Brand Sub Colors
+
+    */
+    --color-sub-25: oklch(from #fcf4f3 l c h);
+    --color-sub-50: oklch(from #faeae8 l c h);
+    --color-sub-100: oklch(from #f8e0dc l c h);
+    --color-sub-150: oklch(from #f5d6d1 l c h);
+    --color-sub-200: oklch(from #f3ccc6 l c h);
+    --color-sub-250: oklch(from #f1c1ba l c h);
+    --color-sub-300: oklch(from #eeb7af l c h);
+    --color-sub-350: oklch(from #ecada3 l c h);
+    --color-sub-400: oklch(from #eaa398 l c h);
+    --color-sub: oklch(from #e8998d l c h);
+    --color-sub-450: oklch(from #e8998d l c h);
+    --color-sub-500: oklch(from #d0897e l c h);
+    --color-sub-550: oklch(from #b97a70 l c h);
+    --color-sub-600: oklch(from #a26b62 l c h);
+    --color-sub-650: oklch(from #8b5b54 l c h);
+    --color-sub-700: oklch(from #744c46 l c h);
+    --color-sub-750: oklch(from #5c3d38 l c h);
+    --color-sub-800: oklch(from #452d2a l c h);
+    --color-sub-850: oklch(from #2e1e1c l c h);
+    --color-sub-900: oklch(from #170f0e l c h);
+    /*
+
+    Accent Colors
+
+    */
+    --color-accent-25: oklch(from #e6ecf3 l c h);
+    --color-accent-50: oklch(from #cddae7 l c h);
+    --color-accent-100: oklch(from #b4c8db l c h);
+    --color-accent-150: oklch(from #9cb5cf l c h);
+    --color-accent-200: oklch(from #83a3c3 l c h);
+    --color-accent-250: oklch(from #6a91b7 l c h);
+    --color-accent-300: oklch(from #527eab l c h);
+    --color-accent-350: oklch(from #396c9f l c h);
+    --color-accent-400: oklch(from #205a93 l c h);
+    --color-accent-450: oklch(from #084887 l c h);
+    --color-accent-500: oklch(from #074079 l c h);
+    --color-accent-550: oklch(from #06396c l c h);
+    --color-accent-600: oklch(from #05325e l c h);
+    --color-accent-650: oklch(from #042b51 l c h);
+    --color-accent-700: oklch(from #042443 l c h);
+    --color-accent-750: oklch(from #031c36 l c h);
+    --color-accent-800: oklch(from #021528 l c h);
+    --color-accent-850: oklch(from #010e1b l c h);
+    --color-accent-900: oklch(from #00070d l c h);
+
+    /*
+
+    Primary Scale Colors
+
+    */
+    --color-primary-25: var(--color-brand-25);
+    --color-primary-50: var(--color-brand-50);
+    --color-primary-100: var(--color-brand-100);
+    --color-primary-150: var(--color-brand-150);
+    --color-primary-200: var(--color-brand-200);
+    --color-primary-250: var(--color-brand-150);
+    --color-primary-300: var(--color-brand-300);
+    --color-primary-350: var(--color-brand-150);
+    --color-primary-400: var(--color-brand-400);
+    --color-primary-450: var(--color-brand-150);
+    --color-primary-500: var(--color-brand-500);
+    --color-primary-550: var(--color-brand-150);
+    --color-primary-600: var(--color-brand-600);
+    --color-primary-650: var(--color-brand-150);
+    --color-primary-700: var(--color-brand-700);
+    --color-primary-750: var(--color-brand-150);
+    --color-primary-800: var(--color-brand-800);
+    --color-primary-850: var(--color-brand-150);
+    --color-primary-900: var(--color-brand-900);
+    --color-primary-950: var(--color-brand-950);
+    /*
+
+    Secondary Scale Colors
+
+    */
+    --color-secondary-25: var(--color-sub-25);
+    --color-secondary-50: var(--color-sub-50);
+    --color-secondary-100: var(--color-sub-100);
+    --color-secondary-150: var(--color-sub-150);
+    --color-secondary-200: var(--color-sub-200);
+    --color-secondary-250: var(--color-sub-150);
+    --color-secondary-300: var(--color-sub-300);
+    --color-secondary-350: var(--color-sub-150);
+    --color-secondary-400: var(--color-sub-400);
+    --color-secondary-450: var(--color-sub-150);
+    --color-secondary-500: var(--color-sub-500);
+    --color-secondary-550: var(--color-sub-150);
+    --color-secondary-600: var(--color-sub-600);
+    --color-secondary-650: var(--color-sub-150);
+    --color-secondary-700: var(--color-sub-700);
+    --color-secondary-750: var(--color-sub-150);
+    --color-secondary-800: var(--color-sub-800);
+    --color-secondary-850: var(--color-sub-150);
+    --color-secondary-900: var(--color-sub-900);
+    --color-secondary-950: var(--color-sub-950);
+    /*
+
+    Tertiary Scale Colors
+
+    */
+    --color-tertiary-25: var(--color-gray-25);
+    --color-tertiary-50: var(--color-gray-50);
+    --color-tertiary-100: var(--color-gray-100);
+    --color-tertiary-150: var(--color-gray-150);
+    --color-tertiary-200: var(--color-gray-200);
+    --color-tertiary-250: var(--color-gray-150);
+    --color-tertiary-300: var(--color-gray-300);
+    --color-tertiary-350: var(--color-gray-150);
+    --color-tertiary-400: var(--color-gray-400);
+    --color-tertiary-450: var(--color-gray-150);
+    --color-tertiary-500: var(--color-gray-500);
+    --color-tertiary-550: var(--color-gray-150);
+    --color-tertiary-600: var(--color-gray-600);
+    --color-tertiary-650: var(--color-gray-150);
+    --color-tertiary-700: var(--color-gray-700);
+    --color-tertiary-750: var(--color-gray-150);
+    --color-tertiary-800: var(--color-gray-800);
+    --color-tertiary-850: var(--color-gray-150);
+    --color-tertiary-900: var(--color-gray-900);
+    --color-tertiary-950: var(--color-gray-950);
+    /*
+
+    Additional Variables -
+    Background
+
+    */
+    --color-bg: var(--color-gray-50);
+    --color-bg-l: var(--color-gray-25);
+    --color-bg-d: var(--color-gray-100);
+    --color-bg-b: var(--color-al-black-100);
+    --color-bg-w: var(--color-al-white-100);
+    --color-bg-e: var(--color-error-500);
+    --color-bg-a: var(--color-sub-500);
+
+    /*
+
+    Additional Variables -
+    Background
+
+    */
+    --color-tx: var(--color-gray-700);
+    --color-tx-l: var(--color-gray-400);
+    --color-tx-ll: var(--color-gray-300);
+    --color-tx-d: var(--color-gray-800);
+    --color-tx-dd: var(--color-gray-900);
+    --color-tx-e: var(--color-al-white-100);
+    --color-tx-a: var(--color-brand-400);
+    --color-tx-e: var(--color-error-500);
+    --color-tx-b: var(--color-al-black-100);
+
+    /*
+
+    Additional Variables -
+    Hover
+
+    */
+    --color-hover: var(--color-sub-400);
+    --color-hover-light: var(--color-brand-200);
+    --color-hover-border: var(--color-brand-400);
+
+    /*
+
+    Additional Variables -
+    Icon
+
+    */
+    --color-ic: var(--color-gray-800);
+    --color-ic-light: var(--color-gray-500);
+    --color-ic-dark: var(--color-gray-900);
+    --color-ic-acccent: var(--color-brand-400);
+    --color-ic-error: var(--color-error-500);
+
+    /*
+
+    Additional Variables -
+    Border
+
+    */
+    --color-bd: var(--color-gray-200);
+    --color-bd-light: var(--color-gray-100);
+    --color-bd-dark: var(--color-gray-300);
+    --color-bd-black: var(--color-al-black-100);
+    --color-bd-white: var(--color-al-white-100);
+    --color-bd-error: var(--color-error-500);
+    --color-bd-accent: var(--color-brand-400);
+  }
+
+  @theme inline {
+    /* 境界の丸み */
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    /* 基本カラー */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    /* カード要素 */
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    /* ポップオーバー要素 */
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    /* プライマリカラー */
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    /* セカンダリカラー */
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    /* ミュートカラー（控えめな表示用） */
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    /* アクセントカラー */
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    /* デストラクティブカラー（警告・エラー用） */
+    --color-destructive: var(--destructive);
+
+    /* UI要素の境界線とフォーム */
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* チャート用カラーパレット */
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    /* サイドバー要素 */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* スクリーンブレークポイント */
+    --breakpoint-4xs: 320px;
+    --breakpoint-3xs: 375px;
+    --breakpoint-2xs: 414px;
+    --breakpoint-xs: 640px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 834px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1440px;
+    --breakpoint-3xl: 1536px;
+    --breakpoint-4xl: 1920px;
+    --breakpoint-5xl: 2560px;
+
+    /* コンテナ幅の設定 */
+    --container-4xs: 17.5rem; /* 280px */
+    --container-3xs: 21.4375rem; /* 343px */
+    --container-2xs: 23.875rem; /* 382px */
+    --container-xs: 36rem; /* 576px */
+    --container-sm: 44rem; /* 704px */
+    --container-md: 48.125rem; /* 770px */
+    --container-lg: 60rem; /* 960px */
+    --container-xl: 76rem; /* 1216px */
+    --container-2xl: 82.5rem; /* 1320px */
+    --container-3xl: 90rem; /* 1440px */
+    --container-4xl: 96rem; /* 1536px */
+    --container-5xl: 120rem; /* 1920px */
+  }
+
+  /* =============================
+   * 2. :root（グローバル変数）
+   * ============================= */
+  :root {
+    /*
+
+    Font Size Settings
+
+    */
+    --font-sans:
+      'Inter Variable', 'Noto Sans JP Variable', 'Helvetica Neue', arial,
+      'Hiragino Kaku Gothic ProN', 'Hiragino Sans', meiryo, sans-serif;
+    --font-serif: 'serif';
+    /* --font-sans:
+    'YakuHanJP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI',
+    'Arial', 'Meiryo', 'sans-serif'; */
+    /* --font-serif: "Shippori Mincho B1", serif; */
+
+    /*
+
+    Error Colors
+
+    */
+    --color-error-25: oklch(from #fff9f7 l c h);
+    --color-error-50: oklch(from #ffe7e0 l c h);
+    --color-error-100: oklch(from #ffd0c1 l c h);
+    --color-error-200: oklch(from #ffb39a l c h);
+    --color-error-300: oklch(from #ff8a6a l c h);
+    --color-error-400: oklch(from #ff6242 l c h);
+    --color-error-500: oklch(from #e13d1e l c h);
+    --color-error-600: oklch(from #b22e13 l c h);
+    --color-error-700: oklch(from #94290f l c h);
+    --color-error-800: oklch(from #7a230c l c h);
+    --color-error-900: oklch(from #611c09 l c h);
+    --color-error-950: oklch(from #3a1105 l c h);
+    /*
+
+    Warning Colors
+
+    */
+    --color-warning-25: oklch(from #fefdf7 l c h);
+    --color-warning-50: oklch(from #fdf8e0 l c h);
+    --color-warning-100: oklch(from #fcf1c1 l c h);
+    --color-warning-200: oklch(from #fae99a l c h);
+    --color-warning-300: oklch(from #f8e16a l c h);
+    --color-warning-400: oklch(from #f3d94a l c h);
+    --color-warning-500: oklch(from #e9ce2a l c h);
+    --color-warning-600: oklch(from #c9b41e l c h);
+    --color-warning-700: oklch(from #a99a13 l c h);
+    --color-warning-800: oklch(from #897f0f l c h);
+    --color-warning-900: oklch(from #736b0c l c h);
+    --color-warning-950: oklch(from #4a4308 l c h);
+    /*
+
+    Success Colors
+
+    */
+    --color-success-25: oklch(from #f7fff9 l c h);
+    --color-success-50: oklch(from #e0ffe7 l c h);
+    --color-success-100: oklch(from #c1ffd0 l c h);
+    --color-success-200: oklch(from #9affb3 l c h);
+    --color-success-300: oklch(from #6aff8a l c h);
+    --color-success-400: oklch(from #42ff62 l c h);
+    --color-success-500: oklch(from #1eff3d l c h);
+    --color-success-600: oklch(from #13e13d l c h);
+    --color-success-700: oklch(from #0fb22e l c h);
+    --color-success-800: oklch(from #0c9423 l c h);
+    --color-success-900: oklch(from #097a1c l c h);
+    --color-success-950: oklch(from #055a11 l c h);
+
+    /* Font Size Settings */
+    --font-size-6xl: 3.125rem; /* 50px */
+    --line-height-6xl: 1.25;
+    --letter-spacing-6xl: 0;
+    --font-size-5xl: 2.8125rem; /* 45px */
+    --line-height-5xl: 1.25;
+    --letter-spacing-5xl: 0;
+    --font-size-4xl: 2.4375rem; /* 39px */
+    --line-height-4xl: 1.25;
+    --letter-spacing-4xl: 0;
+    --font-size-3xl: 2rem; /* 32px */
+    --line-height-3xl: 1.25;
+    --letter-spacing-3xl: 0;
+    --font-size-2xl: 1.75rem; /* 28px */
+    --line-height-2xl: 1.25;
+    --letter-spacing-2xl: 0;
+    --font-size-xl: 1.375rem; /* 22px */
+    --line-height-xl: 1.25;
+    --letter-spacing-xl: 0;
+    --font-size-lg: 1.125rem; /* 18px */
+    --line-height-lg: 1.85;
+    --font-size-base: 1rem; /* 16px */
+    --line-height-base: 1.95;
+    --font-size-md: 1rem; /* 16px */
+    --line-height-md: 1.95;
+    --font-size-sm: 0.875rem; /* 14px */
+    --line-height-sm: 1.8;
+    --font-size-xs: 0.75rem; /* 12px */
+    --line-height-xs: 1.75;
+    --font-size-2xs: 0.6875rem; /* 11px */
+    --line-height-2xs: 1.65;
+    --font-size-3xs: 0.625rem; /* 10px */
+    --line-height-3xs: 1.5;
+
+    /* Line Height Settings */
+    --line-height-1: 1.1;
+    --line-height-2: 1.2;
+    --line-height-extra-tight: 1.1;
+    --line-height-more-tight: 1.2;
+
+    /* Fluid Type Settings */
+    --type-2xs: clamp(
+      var(--font-size-3xs),
+      0.6125rem + 0.0625vw,
+      var(--font-size-2xs)
+    );
+    --type-xs: clamp(
+      var(--font-size-2xs),
+      0.675rem + 0.0625vw,
+      var(--font-size-xs)
+    );
+    --type-sm: clamp(
+      var(--font-size-xs),
+      0.725rem + 0.125vw,
+      var(--font-size-sm)
+    );
+    --type-md: clamp(
+      var(--font-size-sm),
+      0.85rem + 0.125vw,
+      var(--font-size-md)
+    );
+    --type-lg: clamp(
+      var(--font-size-md),
+      0.975rem + 0.125vw,
+      var(--font-size-lg)
+    );
+    --type-xl: clamp(
+      var(--font-size-lg),
+      1.075rem + 0.25vw,
+      var(--font-size-xl)
+    );
+    --type-2xl: clamp(
+      var(--font-size-xl),
+      1.3rem + 0.375vw,
+      var(--font-size-2xl)
+    );
+    --type-3xl: clamp(
+      var(--font-size-2xl),
+      1.7rem + 0.25vw,
+      var(--font-size-3xl)
+    );
+    --type-4xl: clamp(
+      var(--font-size-3xl),
+      1.9125rem + 0.4375vw,
+      var(--font-size-4xl)
+    );
+    --type-5xl: clamp(
+      var(--font-size-4xl),
+      2.3625rem + 0.375vw,
+      var(--font-size-5xl)
+    );
+    --type-6xl: clamp(
+      var(--font-size-5xl),
+      2.75rem + 0.3125vw,
+      var(--font-size-6xl)
+    );
+
+    /*
+
+    Aspect Ratio Settings
+
+    */
+    --aspect-ratio-21-9: 21 / 9;
+    --aspect-ratio-1-91-1: 1.91 / 1;
+    --aspect-ratio-1-414-1: 1.414 / 1;
+    --aspect-ratio-1-618-1: 1.618 / 1;
+
+    /* Animation Settings */
+    --animation-accordion-down: accordion-down 0.2s ease-out;
+    --animation-accordion-up: accordion-up 0.2s ease-out;
+    --animation-fib: fade-in-bottom 0.5s ease-out both;
+    --animation-heart: pulse 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    /* Grid Template Columns */
+    --grid-template-columns-custom: minmax(min(200px, 10vw), min(280px, 15vw))
+      minmax(min(1200px, 0px), min(1528px, 100%));
+  }
+
+  /* =============================
+   * 3. ダークモード用カスタムプロパティ
+   * ============================= */
+  .dark {
+    --background: var(--gray-950);
+    --foreground: var(--gray-100);
+    --card: var(--gray-900);
+    --card-foreground: var(--gray-100);
+    --popover: var(--gray-900);
+    --popover-foreground: var(--gray-100);
+    --primary: var(--brand-100);
+    --primary-foreground: var(--brand-900);
+    --secondary: var(--gray-800);
+    --secondary-foreground: var(--gray-100);
+    --muted: var(--gray-800);
+    --muted-foreground: var(--gray-400);
+    --accent: var(--gray-800);
+    --accent-foreground: var(--gray-100);
+    --destructive: var(--error-700);
+    --destructive-foreground: var(--error-200);
+    --border: var(--gray-800);
+    --input: var(--gray-800);
+    --ring: var(--brand-500);
+    --chart-1: var(--warning-400);
+    --chart-2: var(--brand-300);
+    --chart-3: var(--brand-500);
+    --chart-4: var(--accent-300);
+    --chart-5: var(--brand-sub-300);
+    --sidebar: var(--gray-900);
+    --sidebar-foreground: var(--gray-100);
+    --sidebar-primary: var(--brand-300);
+    --sidebar-primary-foreground: var(--gray-900);
+    --sidebar-accent: var(--gray-800);
+    --sidebar-accent-foreground: var(--gray-100);
+    --sidebar-border: var(--gray-800);
+    --sidebar-ring: var(--brand-500);
+    --background-dark: var(--gray-800);
+    --text: var(--foreground);
+    --txt: var(--foreground);
+    --hover: var(--brand-200);
+    --hover-rgb: oklch(60% 0.2 240deg);
+  }
+
+  /* =============================
+   * 4. CSSリセット・共通ユーティリティ
+   * ============================= */
+  * {
+    outline-color: var(--ring) / 50%;
+    border-color: var(--border);
+  }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    border: 0 solid;
+    padding: 0;
+  }
+  ::selection {
+    background-color: var(--color-blue-700);
+    color: #fff;
+  }
+  body {
+    scroll-behavior: smooth;
+    color: var(--foreground);
+    /* text-autospace: no-autospace; */
+  }
+
+  /* =============================
+   * 5. タイポグラフィ（見出しなど）
+   * ============================= */
+  h1,
+  .h1 {
+    font-size: var(--font-size-6xl);
+    line-height: var(--line-height-6xl);
+    letter-spacing: var(--letter-spacing-6xl);
+  }
+  h2,
+  .h2 {
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-5xl);
+    letter-spacing: var(--letter-spacing-5xl);
+  }
+  h3,
+  .h3 {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-4xl);
+    letter-spacing: var(--letter-spacing-4xl);
+  }
+  h4,
+  .h4 {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-3xl);
+    letter-spacing: var(--letter-spacing-3xl);
+  }
+  h5,
+  .h5 {
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-2xl);
+    letter-spacing: var(--letter-spacing-2xl);
+  }
+  h6,
+  .h6 {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+    letter-spacing: var(--letter-spacing-xl);
+  }
+
+  /* =============================
+   * 6. アニメーションKeyframes
+   * ============================= */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes fade-in-bottom {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+/**
+ * ===== @layer components =====
+ * 役割:
+ * - 再利用可能なコンポーネントのスタイルを定義する
+ * - 複数のユーティリティを組み合わせた複合的なスタイルを作成する
+ * - プロジェクト固有のUIコンポーネントを定義する
+ *
+ * 使用例:
+ * - ボタン、カード、フォーム要素などのコンポーネント
+ * - ナビゲーション、モーダル、タブなどの複合的なUI要素
+ * - カスタムコンポーネントライブラリの作成
+ *
+ * 特徴:
+ * - 中間の優先度を持つ（baseより高く、utilitiesより低い）
+ * - 複数のスタイルをまとめて再利用可能なコンポーネントとして定義する
+ * - HTMLでクラス名として直接使用できる
+ */
+@layer components {
+  .type-2xs {
+    font-size: var(--type-2xs);
+  }
+
+  .type-xs {
+    font-size: var(--type-xs);
+  }
+
+  .type-sm {
+    font-size: var(--type-sm);
+  }
+
+  .type-md {
+    font-size: var(--type-md);
+  }
+
+  .type-lg {
+    font-size: var(--type-lg);
+  }
+
+  .type-xl {
+    font-size: var(--type-xl);
+  }
+
+  .type-2xl {
+    font-size: var(--type-2xl);
+  }
+
+  .type-3xl {
+    font-size: var(--type-3xl);
+  }
+
+  .type-4xl {
+    font-size: var(--type-4xl);
+  }
+
+  .type-5xl {
+    font-size: var(--type-5xl);
+  }
+
+  .type-6xl {
+    font-size: var(--type-6xl);
+  }
+}
+
+/**
+ * ===== @layer utilities =====
+ * 役割:
+ * - TailwindCSSの既存ユーティリティを拡張する
+ * - プロジェクト固有のユーティリティクラスを追加する
+ * - 頻繁に使用するスタイルパターンをユーティリティ化する
+ *
+ * 使用例:
+ * - カスタムアスペクト比の定義
+ * - 特殊なアニメーションクラスの追加
+ * - プロジェクト固有のグリッドレイアウト
+ * - 特殊な文字折り返し設定
+ *
+ * 特徴:
+ * - 最も高い優先度を持つ
+ * - 単一の目的を持つ小さなクラスを定義する
+ * - HTMLで直接使用するためのクラスを提供する
+ */
+
+@layer utilities {
+  .drag-none {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+    }
+  }
+
+  /* Apply styles for aspect ratios */
+
+  .aspect-21\/9 {
+    aspect-ratio: var(--aspect-ratio-21-9);
+  }
+
+  .aspect-1\.414\/1 {
+    aspect-ratio: var(--aspect-ratio-1-41-1);
+  }
+
+  .aspect-1\.91\/1 {
+    aspect-ratio: var(--aspect-ratio-1-91-1);
+  }
+
+  .aspect-1\.618\/1 {
+    aspect-ratio: var(--aspect-ratio-1-618-1);
+  }
+
+  /* Animation utilities */
+  .animate-accordion-down {
+    animation: var(--animation-accordion-down);
+  }
+
+  .animate-accordion-up {
+    animation: var(--animation-accordion-up);
+  }
+
+  .animate-fib {
+    animation: var(--animation-fib);
+  }
+
+  .animate-heart {
+    animation: var(--animation-heart);
+  }
+
+  /* Background image utilities */
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  .bg-gradient-conic {
+    background-image: conic-gradient(
+      from 180deg at 50% 50%,
+      var(--tw-gradient-stops)
+    );
+  }
+
+  /* Grid template columns */
+  .grid-cols-custom {
+    grid-template-columns: var(--grid-template-columns-custom);
+  }
+
+  /* Utility Classes */
+
+  .max-w-container-4xs {
+    max-width: var(--container-4xs);
+  }
+
+  .max-w-container-3xs {
+    max-width: var(--container-3xs);
+  }
+
+  .max-w-container-2xs {
+    max-width: var(--container-2xs);
+  }
+
+  .max-w-container-xs {
+    max-width: var(--container-xs);
+  }
+
+  .max-w-container-sm {
+    max-width: var(--container-sm);
+  }
+
+  .max-w-container-md {
+    max-width: var(--container-md);
+  }
+
+  .max-w-container-lg {
+    max-width: var(--container-lg);
+  }
+
+  .max-w-container-xl {
+    max-width: var(--container-xl);
+  }
+
+  .max-w-container-2xl {
+    max-width: var(--container-2xl);
+  }
+
+  .max-w-container-3xl {
+    max-width: var(--container-3xl);
+  }
+
+  .max-w-container-4xl {
+    max-width: var(--container-4xl);
+  }
+
+  .max-w-container-5xl {
+    max-width: var(--container-5xl);
+  }
+
+  /*
+    =============================
+    グラデーションサンプル
+    =============================
+  */
+  .gradation {
+    animation: gradientFlow 15s ease infinite;
+    background-image: linear-gradient(
+      125deg,
+      #0a0a0a 0%,
+      #2d1b4e 29%,
+      #1a0b2e 67%,
+      #0a0a0a 100%
+    );
+    background-size: 200% 200%;
+    background-color: #0a0a0a;
+  }
+
+  .gradation2 {
+    animation: gradientFlow 15s ease infinite;
+    background-image: linear-gradient(
+      125deg,
+      #3f483a 0%,
+      #878d84 29%,
+      #776e5c 67%,
+      #3f483a 100%
+    );
+    background-size: 200% 200%;
+    background-color: #2f392d;
+  }
+
+  .gradation3 {
+    animation: gradientFlow 15s ease infinite;
+    background-image: linear-gradient(
+      125deg,
+      #4ba0a5 0%,
+      #bcdfdf 29%,
+      #4ba0a5 67%,
+      #206f73 100%
+    );
+    background-size: 200% 200%;
+    background-color: #4ba0a5;
+  }
+}
+
+@import './auto-grid.css';
+@import './article-content.css';
+@import './container.css';
+@import './font-feature.css';
+@import './inner.css';
+@import './kerning.css';
+@import './leading-trim.css';
+@import './noise-background.css';
+@import './offset.css';
+@import './pattern.css';
+@import './prose.css';
+@import './text-box.css';
+@import './word-break.css';
+@import './writing-vertical.css';

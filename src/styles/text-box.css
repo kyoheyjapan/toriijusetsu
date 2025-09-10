@@ -1,0 +1,24 @@
+  /*
+    @utility text-box
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
+    このクラスは、テキストの上下端（cap, alphabetic）を揃え、text-box-trimで前後の余白をトリミングします。
+    英文や和文のテキストボックスのベースライン調整や、見出し・本文の揃えに利用します。
+
+    例:
+    <span class="text-box">Sample Text</span>
+    <span class="text-box-en">English Text</span>
+    <span class="text-box-ja">日本語テキスト</span>
+  */
+.text-box {
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+}
+
+.text-box-en {
+  text-box: trim-both cap alphabetic;
+}
+
+.text-box-ja {
+  text-box: trim-both text text;
+}

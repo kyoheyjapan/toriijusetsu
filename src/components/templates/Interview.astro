@@ -1,0 +1,73 @@
+---
+import { Container } from 'postcss';
+import Br from '../atoms/Br';
+import Button from '../atoms/Button';
+import Spacer from '../atoms/Spacer';
+import Heading from '../molecules/Heading';
+import Kerning from '../atoms/Kerning';
+---
+
+<div
+  class={`
+    box-border flex flex-col items-center justify-between
+    md:flex-col md:items-center
+  `}
+>
+  <Heading
+    client:load
+    color="gray"
+    align="center"
+    navLabel="対談動画"
+    navLabelEng="CONVERSATION VIDEO"
+  />
+  <Spacer size="xs" />
+  <div class="typo-lg px-4 text-center leading-loose">
+    <h3>
+      <Kerning
+        text="対談動画リードコピー"
+        aria-label="対談動画リードコピー"
+        autoPhrase={true}
+        className={`
+          text-sm:text-2xl
+          font-serif text-xl text-primary
+          lg:leading-relaxed
+          xl:text-3xl
+        `}
+        phraseDelimiter="/"
+        kerningValues={[
+          { char: '対', p: 0, s: 0 },
+          { char: '談', p: 0, s: 0 },
+          { char: '動', p: 0, s: 0 },
+          { char: '画', p: 0, s: -0.15 },
+          { char: 'リ', p: 0, s: -0.15 },
+          { char: 'ー', p: 0, s: -0.15 },
+          { char: 'ド', p: 0, s: -0.15 },
+          { char: 'コ', p: 0, s: -0.15 },
+          { char: 'ピ', p: 0, s: -0.25 },
+          { char: 'ー', p: 0, s: -0.15 },
+        ]}
+      />
+    </h3>
+    <Spacer size="3xs" />
+    <p class="autoPhrase">
+      『歌われなかった海賊へ』『ブレイクショットの軌跡』と話題作を続ける逢坂冬馬氏との貴重な対談をお届けします。的なボディコピー
+    </p>
+    <p class="autoPhrase">対談日時：2025年00月00日 都内某所</p>
+  </div>
+  <Spacer size="xs" />
+  <div
+    class={`
+      flex aspect-[16/9] h-auto w-full flex-col items-center justify-between
+    `}
+  >
+    <iframe
+      class="size-full"
+      src="https://www.youtube.com/embed/TW-TnqNsom4?si=jzFcjuCfDFuLvLEg"
+      width="100%"
+      height="100%"
+      title="YouTube video player"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen></iframe>
+  </div>
+</div>
