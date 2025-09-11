@@ -4,6 +4,8 @@ import Container from '../components/atoms/Container';
 import Layout from '../layouts/Layout.astro';
 import Spacer from '../components/atoms/Spacer';
 import Br from '../components/atoms/Br';
+import Textlink from '../components/atoms/Textlink';
+import Button from '../components/atoms/Button.astro';
 
 const companyInfoItems = [
   { label: 'Business Name', value: '鳥井住設<br/>TORII Jusetsu' },
@@ -73,19 +75,13 @@ const companyInfoItems = [
             ))
           }
         </div>
-      </div>
-      <Spacer size="sm" />
-      <div class={`grid grid-cols-1`}>
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSd7r2zfvx-6egBp6AiNmi-QTXCF8y0jI4cmzM_yfeIBXatTAQ/viewform?embedded=true"
-          width="112%"
-          height="100%"
-          class={`
-            mx-auto ml-[-6%] h-[1120px]
-            md:h-[980px]
-          `}
+        <Button
+          href="https://forms.gle/ynsrBdYpgo2Fk8BE8"
+          target="_blank"
+          rel="noreferrer noopener"
+          hierarchy="tertiary"
+          size="lg">お問い合わせはこちら</Button
         >
-        </iframe>
       </div>
     </Container>
   </main>
