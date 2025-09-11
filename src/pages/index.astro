@@ -19,16 +19,16 @@ const companyInfoItems = [
     value: '鳥井邦幸<br/>TORII Kuniyuki',
   },
   {
-    label: 'Qualification - 有資格',
-    value:
-      '<ul class="list-disc list-inside space-y-3"><li>液化石油ガス設備士免状<br/><span class="text-box-en indent-6 text-gray-500 block">Liquefied Petroleum Gas Equipment Technician License</span></li><li>販売主任者免状（二種販売）<br/><span class="text-box-en indent-6 text-gray-500 block">Sales Supervisor License (Category 2)</span></li><li>業務主任者の代理者講習修了証<br/><span class="text-box-en indent-6 text-gray-500 block">Business Supervisor Proxy Training Certificate</span></li><li>危険物取扱者免状（丙種）<br/><span class="text-box-en indent-6 text-gray-500 block">Hazardous Materials Handler License (Class C)</span></li><li>技能講習修了証（玉掛け）<br/><span class="text-box-en indent-6 text-gray-500 block">Skills Training Certificate (Rigging Operations)</span></li></ul>',
-  },
-  {
     label: 'Address - 所在地',
     value:
       '〒238-0315 神奈川県横須賀市林 2-1-2-38<br/>2-1-2-38 Hayashi, Yokosuka-shi, Kanagawa 238-0315, Japan',
   },
   { label: 'E-Mail - メールアドレス', value: 'hello@toriijusetsu.com' },
+  {
+    label: 'Qualification - 有資格',
+    value:
+      '<ul class="list-disc list-inside space-y-3"><li>液化石油ガス設備士免状<br/><span class="text-box-en indent-6 text-gray-500 block">Liquefied Petroleum Gas Equipment Technician License</span></li><li>販売主任者免状（二種販売）<br/><span class="text-box-en indent-6 text-gray-500 block">Sales Supervisor License (Category 2)</span></li><li>業務主任者の代理者講習修了証<br/><span class="text-box-en indent-6 text-gray-500 block">Business Supervisor Proxy Training Certificate</span></li><li>危険物取扱者免状（丙種）<br/><span class="text-box-en indent-6 text-gray-500 block">Hazardous Materials Handler License (Class C)</span></li><li>技能講習修了証（玉掛け）<br/><span class="text-box-en indent-6 text-gray-500 block">Skills Training Certificate (Rigging Operations)</span></li></ul>',
+  },
 ];
 ---
 
@@ -50,46 +50,61 @@ const companyInfoItems = [
       </div>
     </div>
     <div class="bg-gray-25">
-      <Container size="sm" className="inner_sm-t">
-        <Spacer size="sm" />
-        <div class="grid grid-cols-1">
-          <div
-            class={`
-              col-span-1 flex flex-col gap-2 border-y border-gray-200 py-4
-              [&>div]:last:border-b-0
-            `}
-          >
-            {
-              companyInfoItems.map((item) => (
-                <div
+      <Container size="xl" className="inner_sm-t">
+        <Spacer
+          size="3xs"
+          className={`
+            block
+            md:hidden
+          `}
+        />
+        <Spacer
+          size="sm"
+          className={`
+            hidden
+            md:block
+          `}
+        />
+        <div
+          class={`
+            grid grid-rows-2
+            md:grid-cols-2 md:gap-x-16
+            [&>div]:last:border-b-0
+          `}
+        >
+          {
+            companyInfoItems.map((item) => (
+              <div
+                class={`
+                  col-span-1
+                  ${item.label === 'Qualification - 有資格' ? 'row-span-3' : 'row-span-1'}
+                  flex w-full flex-col gap-2 border-b border-gray-200 py-4
+                  lg:gap-3 lg:py-6
+                `}
+              >
+                <dt
                   class={`
-                    grid w-full grid-cols-1 gap-2 border-b border-gray-200 py-2
-                    lg:grid-cols-1 lg:gap-3 lg:py-6
+                    type-md col-span-1 font-sans font-medium text-gray-500
                   `}
                 >
-                  <dt
-                    class={`
-                      type-md col-span-1 font-sans font-medium text-gray-500
-                    `}
-                  >
-                    {item.label}
-                  </dt>
-                  <dd
-                    class="type-lg col-span-1 font-sans text-gray-700"
-                    set:html={item.value}
-                  />
-                </div>
-              ))
-            }
-          </div>
-          <Button
-            href="https://forms.gle/ynsrBdYpgo2Fk8BE8"
-            target="_blank"
-            rel="noreferrer noopener"
-            hierarchy="tertiary"
-            size="md">お問い合わせはこちら（Google Form）</Button
-          >
+                  {item.label}
+                </dt>
+                <dd
+                  class="type-lg col-span-1 font-sans text-gray-700"
+                  set:html={item.value}
+                />
+              </div>
+            ))
+          }
         </div>
+        <Spacer size="sm" />
+        <Button
+          href="https://forms.gle/ynsrBdYpgo2Fk8BE8"
+          target="_blank"
+          rel="noreferrer noopener"
+          hierarchy="tertiary"
+          size="md">お問い合わせはこちら（Google Form）</Button
+        >
       </Container>
     </div>
   </main>
