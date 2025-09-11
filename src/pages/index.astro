@@ -15,19 +15,19 @@ const companyInfoItems = [
       '一般住宅設備の販売・施工<br/>Sales and installation of general residential equipment',
   },
   {
-    label: 'Representative - 代表者',
-    value: '鳥井邦幸<br/>TORII Kuniyuki',
-  },
-  {
     label: 'Address - 所在地',
     value:
       '〒238-0315 神奈川県横須賀市林 2-1-2-38<br/>2-1-2-38 Hayashi, Yokosuka-shi, Kanagawa 238-0315, Japan',
+  },
+  {
+    label: 'Representative - 代表者',
+    value: '鳥井邦幸<br/>TORII Kuniyuki',
   },
   { label: 'E-Mail - メールアドレス', value: 'hello@toriijusetsu.com' },
   {
     label: 'Qualification - 有資格',
     value:
-      '<ul class="list-disc list-inside space-y-3"><li>液化石油ガス設備士免状<br/><span class="text-box-en type-md md:indent-6 text-gray-500 block">Liquefied Petroleum Gas Equipment Technician License</span></li><li>販売主任者免状（二種販売）<br/><span class="text-box-en type-md md:indent-6 text-gray-500 block">Sales Supervisor License (Category 2)</span></li><li>業務主任者の代理者講習修了証<br/><span class="text-box-en type-md md:indent-6 text-gray-500 block">Business Supervisor Proxy Training Certificate</span></li><li>危険物取扱者免状（丙種）<br/><span class="text-box-en type-md md:indent-6 text-gray-500 block">Hazardous Materials Handler License (Class C)</span></li><li>技能講習修了証（玉掛け）<br/><span class="text-box-en type-md md:indent-6 text-gray-500 block">Skills Training Certificate (Rigging Operations)</span></li></ul>',
+      '<ul class="list-disc list-inside space-y-3"><li>液化石油ガス設備士免状<br/><span class="text-box-en indent-6 text-gray-500 block">Liquefied Petroleum Gas Equipment Technician License</span></li><li>販売主任者免状（二種販売）<br/><span class="text-box-en indent-6 text-gray-500 block">Sales Supervisor License (Category 2)</span></li><li>業務主任者の代理者講習修了証<br/><span class="text-box-en indent-6 text-gray-500 block">Business Supervisor Proxy Training Certificate</span></li><li>危険物取扱者免状（丙種）<br/><span class="text-box-en indent-6 text-gray-500 block">Hazardous Materials Handler License (Class C)</span></li><li>技能講習修了証（玉掛け）<br/><span class="text-box-en indent-6 text-gray-500 block">Skills Training Certificate (Rigging Operations)</span></li></ul>',
   },
 ];
 ---
@@ -67,18 +67,18 @@ const companyInfoItems = [
         />
         <div
           class={`
-            grid grid-rows-2
+            grid-auto-rows-auto grid
             md:grid-cols-2 md:gap-x-16
             [&>div]:last:border-b-0
+            md:[&>div:nth-child(5)]:border-b-0
           `}
         >
           {
             companyInfoItems.map((item) => (
               <div
                 class={`
-                  col-span-1
-                  ${item.label === 'Qualification - 有資格' ? 'row-span-3' : 'row-span-1'}
-                  flex w-full flex-col gap-3 border-b border-gray-200 py-4
+                  col-span-1 flex w-full flex-col gap-3 border-b border-gray-200
+                  py-4
                   lg:gap-4 lg:py-6
                 `}
               >
