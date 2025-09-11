@@ -14,9 +14,12 @@ const LoadingAnimation: React.FC = () => {
     const handleLoad = (): void => {
       setTimeout(() => {
         setLoading(false);
-        // bodyのloadingクラスを削除（Layout.astroのスクリプトと連携）
-        document.body.classList.remove('loading');
-      }, 1500);
+        // ローディング完了後、少し遅らせてメインコンテンツを表示
+        setTimeout(() => {
+          document.body.classList.remove('loading');
+          document.body.classList.add('loaded');
+        }, 300); // フェードアウトアニメーションの完了を待つ
+      }, 1000);
     };
 
     // DOMContentLoadedイベントを待つ
@@ -30,7 +33,10 @@ const LoadingAnimation: React.FC = () => {
     const handleWindowLoad = (): void => {
       setTimeout(() => {
         setLoading(false);
-        document.body.classList.remove('loading');
+        setTimeout(() => {
+          document.body.classList.remove('loading');
+          document.body.classList.add('loaded');
+        }, 600);
       }, 2500);
     };
 
@@ -44,8 +50,16 @@ const LoadingAnimation: React.FC = () => {
 
   // フェードアウトのアニメーション設定
   const fadeVariants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0, transition: { duration: 0.35 } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.15, ease: 'easeOut' },
+    },
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      transition: { duration: 0.25, ease: 'easeInOut' },
+    },
   };
 
   return (
@@ -57,6 +71,7 @@ const LoadingAnimation: React.FC = () => {
           initial="visible"
           animate="visible"
           exit="hidden"
+          className="fixed top-0 left-0 z-50 size-full"
         >
           <div
             className={`

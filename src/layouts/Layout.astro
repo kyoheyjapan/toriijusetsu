@@ -126,13 +126,28 @@ const ogHeight = ogImageHeight || metaOgImageHeight || defaultOgImageHeight;
     <link rel="icon" type="image/png" href={faviconPng.src} />
     <link rel="apple-touch-icon" href={appleTouchIcon.src} />
   </head>
-  <body id="top" class="loading relative flex min-h-svh flex-col bg-gray-25">
+  <body id="top" class="loading relative flex min-h-svh flex-col bg-[#1B256F]">
     <Loading client:only="react" />
-    <div class="flex flex-grow flex-col">
+    <div
+      class={`
+        main-content flex flex-grow flex-col opacity-0 transition-opacity
+        duration-900 ease-in-out
+      `}
+    >
       <div class="flex-grow">
         <slot />
       </div>
-      <Footer />
+      <div class="bg-gray-25">
+        <Footer />
+      </div>
     </div>
+    <style>
+      body.loaded .main-content {
+        opacity: 1;
+      }
+      body.loading .main-content {
+        opacity: 0;
+      }
+    </style>
   </body>
 </html>
