@@ -22,7 +22,12 @@ const fluidSizingPlugin = plugin.withOptions(
           throw new Error('流体値には最低でもminとmaxの値が必要です');
         }
 
-        const [minSize, maxSize, minVw = config.minViewport, maxVw = config.maxViewport] = parts;
+        const [
+          minSize,
+          maxSize,
+          minVw = config.minViewport,
+          maxVw = config.maxViewport,
+        ] = parts;
 
         return {
           minSize: parseFloat(minSize),
@@ -562,7 +567,7 @@ const fluidSizingPlugin = plugin.withOptions(
       // 流体フォントサイズユーティリティ
       matchUtilities(
         {
-          'fluid-text': (value) => {
+          'fluid-t': (value) => {
             try {
               const parsed = parseFluidValue(value);
               validateFluidValue(parsed);
@@ -577,7 +582,7 @@ const fluidSizingPlugin = plugin.withOptions(
                 ),
               };
             } catch (error) {
-              console.warn(`fluid-text-${value}: ${error.message}`);
+              console.warn(`fluid-t-${value}: ${error.message}`);
               return {};
             }
           },

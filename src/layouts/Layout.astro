@@ -85,6 +85,21 @@ const ogHeight = ogImageHeight || metaOgImageHeight || defaultOgImageHeight;
   `}
 >
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CKC6NDG1FV"
+    >
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-CKC6NDG1FV');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
@@ -111,7 +126,7 @@ const ogHeight = ogImageHeight || metaOgImageHeight || defaultOgImageHeight;
     <link rel="icon" type="image/png" href={faviconPng.src} />
     <link rel="apple-touch-icon" href={appleTouchIcon.src} />
   </head>
-  <body id="top" class="loading flex min-h-svh flex-col bg-gray-25">
+  <body id="top" class="loading relative flex min-h-svh flex-col bg-gray-25">
     <Loading client:only="react" />
     <div class="flex flex-grow flex-col">
       <div class="flex-grow">

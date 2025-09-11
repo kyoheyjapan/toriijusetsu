@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 
 const isProd = process.env.NODE_ENV === 'production';
 export default defineConfig({
-  site: 'https://boilerplate.com',
+  site: 'https://toriijusetsu.com',
   base: isProd ? '/dist' : '/',
   // base: '/dist',
   base: '/',

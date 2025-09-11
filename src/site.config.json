@@ -5,11 +5,11 @@
     "company": {
       "name": "鳥井住設",
       "nameEng": "ToriiJusetsu",
-      "zip": "1500034",
-      "address": "東京都千代田区1-1-1",
-      "addressEng": "1-1-1, Chiyoda-ku, Tokyo, Japan",
-      "telephone": "03-1234-5678",
-      "mail": "info@dummy.co.jp",
+      "zip": "238-0315",
+      "address": "神奈川県横須賀市林2-1-2-38",
+      "addressEng": "2-1-2-38 Hayashi, Yokosuka-shi, Kanagawa 238-0315, Japan",
+      "telephone": "090-7710-7330",
+      "mail": "hello@toriijusetsu.com",
       "map": "https://maps.app.goo.gl/gzFPHaSZS1fjqsvW7"
     },
     "home": {
@@ -20,7 +20,7 @@
       },
       "en": {
         "title": "Top Page",
-        "description": "Sanodyne Therapeutics, Inc. website. At Sanodyne Therapeutics, we are dedicated to bringing hope and relief to patients suffering from peripheral neuropathy and neuropathic pain. We are committed to developing innovative therapies that restore comfort and improve quality of life. By leveraging cutting-edge science and our deep experience in pain management."
+        "description": "鳥井住設のウェブサイト"
       }
     },
     "ogp": {

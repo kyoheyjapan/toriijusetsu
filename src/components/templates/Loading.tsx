@@ -64,7 +64,12 @@ const LoadingAnimation: React.FC = () => {
               justify-center gap-2 bg-[#171D5D]
             `}
           >
-            <Loader />
+            <Loader className="relative z-10" />
+            <div
+              className={`
+                noise-bg absolute inset-0 z-0 size-full mix-blend-overlay
+              `}
+            ></div>
           </div>
         </motion.div>
       )}

@@ -3,6 +3,7 @@ import Logo from '../components/vi/Logo';
 import Container from '../components/atoms/Container';
 import Layout from '../layouts/Layout.astro';
 import Spacer from '../components/atoms/Spacer';
+import Br from '../../../sanodyne/src/components/atoms/Br';
 
 const companyInfoItems = [
   { label: 'Business Name', value: '鳥井住設<br/>TORII Jusetsu' },
@@ -25,9 +26,23 @@ const companyInfoItems = [
 
 <Layout meta="siteInfo.home">
   <main>
-    <Container size="sm" className="inner_lg">
-      <Logo className="mx-auto h-auto fluid-w-[120px,240px]" />
-      <Spacer size="lg" />
+    <div class="relative grid h-svh w-full place-items-center bg-[#171D5D]">
+      <div class="flex flex-col gap-4">
+        <h2
+          class={`
+            fluid-t-[13px,15px] text-center font-sans leading-normal font-medium
+            text-white
+          `}
+        >
+          神奈川県横須賀市・三浦市を<Br all />中心とした住宅設備の販売・施工
+        </h2>
+        <Logo className="relative z-10 mx-auto h-auto fluid-w-[160px,240px]" />
+      </div>
+      <div class="noise-bg absolute inset-0 z-0 size-full mix-blend-overlay">
+      </div>
+    </div>
+    <Container size="sm" className="inner_sm-t">
+      <Spacer size="sm" />
       <div class="grid grid-cols-1">
         <div
           class={`
@@ -58,6 +73,19 @@ const companyInfoItems = [
             ))
           }
         </div>
+      </div>
+      <Spacer size="sm" />
+      <div class={`grid grid-cols-1`}>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSd7r2zfvx-6egBp6AiNmi-QTXCF8y0jI4cmzM_yfeIBXatTAQ/viewform?embedded=true"
+          width="112%"
+          height="100%"
+          class={`
+            mx-auto ml-[-6%] h-[930px]
+            md:h-[860px]
+          `}
+        >
+        </iframe>
       </div>
     </Container>
   </main>
